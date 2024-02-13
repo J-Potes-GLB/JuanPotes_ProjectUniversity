@@ -18,7 +18,7 @@ public class UniClass implements Details {
 
     // Methods
     public int indexOfStudent(int id){
-        return -1;
+        return 0;
     }
 
     public void addStudent(Student student){

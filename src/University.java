@@ -82,7 +82,46 @@ public class University {
     public void showClassesOfStudent(){
 
     }
-    
+
+    public void initializeValues(){
+        this.teachers.add(new FullTimeTeacher("Alberto Perez", 1001, 5000, 5));
+        this.teachers.add(new FullTimeTeacher("Sara Garcia", 1002, 6000, 10));
+        this.teachers.add(new PartTimeTeacher("Alex Jimenez", 1003, 4000));
+        this.teachers.add(new PartTimeTeacher("Natalia Parra", 1004, 4300));
+
+        this.classes.add(new UniClass("Matematicas 1", 4));
+        this.classes.add(new UniClass("Quimica 2", 3));
+        this.classes.add(new UniClass("Programacion 3", 3));
+        this.classes.add(new UniClass("Dibujo 1", 2));
+
+        this.students.add(new Student("Javier Rodriguez", 2001, 18));
+        this.students.add(new Student("Milena Vargas", 2002, 20));
+        this.students.add(new Student("Santiago Ruiz", 2003, 19));
+        this.students.add(new Student("Luis Gomez", 2004, 21));
+        this.students.add(new Student("John Pardo", 2005, 18));
+        this.students.add(new Student("Carol Mora", 2001, 20));
+
+        this.classes.get(0).setClassTeacher(this.teachers.get(3));
+        this.classes.get(0).addStudent(this.students.get(0));
+        this.classes.get(0).addStudent(this.students.get(2));
+        this.classes.get(0).addStudent(this.students.get(4));
+
+        this.classes.get(1).setClassTeacher(this.teachers.get(0));
+        this.classes.get(1).addStudent(this.students.get(1));
+        this.classes.get(1).addStudent(this.students.get(3));
+        this.classes.get(1).addStudent(this.students.get(5));
+
+        this.classes.get(2).setClassTeacher(this.teachers.get(2));
+        this.classes.get(2).addStudent(this.students.get(1));
+        this.classes.get(2).addStudent(this.students.get(0));
+        this.classes.get(2).addStudent(this.students.get(2));
+
+        this.classes.get(3).setClassTeacher(this.teachers.get(1));
+        this.classes.get(3).addStudent(this.students.get(4));
+        this.classes.get(3).addStudent(this.students.get(5));
+        this.classes.get(3).addStudent(this.students.get(3));
+    }
+
     // Getters and Setters
     public List<UniClass> getClasses() {
         return classes;
