@@ -12,7 +12,39 @@ public class University {
 
     // Methods
     public void executeOptions(){
+        int option = 0;
+        do{
+            option = UserInput.optionMainMenu();
 
+            switch(option){
+                case 1:
+                    showClasses();
+                    break;
+                case 2:
+                    showTeachers();
+                    break;
+                case 3:
+                    showStudents();
+                    break;
+                case 4:
+                    selectAndShowClass();
+                    break;
+                case 5:
+                    createStudent();
+                    break;
+                case 6:
+                    addStudentToClass();
+                    break;
+                case 7:
+                    createClass();
+                    break;
+                case 8:
+                    showClassesOfStudent();
+                    break;
+                default:
+                    break;
+            }
+        }while(option != 9);
     }
 
     public void showClasses(){
@@ -50,7 +82,7 @@ public class University {
     public void showClassesOfStudent(){
 
     }
-
+    
     // Getters and Setters
     public List<UniClass> getClasses() {
         return classes;

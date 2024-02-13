@@ -10,17 +10,25 @@ public class UniClass implements Details {
     private static int freeClassId = 1;
 
     // Constructor
-    public UniClass(int id, String name, List<Student> classStudents, Teacher classTeacher, int weeklyHours) {
-        this.id = id;
+    public UniClass(String name, int weeklyHours) {
+        this.id = getFreeClassId();
         this.name = name;
-        this.classStudents = classStudents;
-        this.classTeacher = classTeacher;
         this.weeklyHours = weeklyHours;
     }
 
     // Methods
     public int indexOfStudent(int id){
         return -1;
+    }
+
+    public void addStudent(Student student){
+        if (indexOfStudent(student.getId()) != -1){
+            this.classStudents.add(student);
+            System.out.println("\nStudent '" + student.getName() + "' was added to the class '" + this.name + "'");
+        }
+        else{
+            System.out.println("\nThe student it's already in the class");
+        }
     }
 
     public void showDetails(){
@@ -58,6 +66,10 @@ public class UniClass implements Details {
 
     public void setClassTeacher(Teacher classTeacher) {
         this.classTeacher = classTeacher;
+
+        if(this.classTeacher instanceof PartTimeTeacher){
+            ((PartTimeTeacher) this.classTeacher).increaseActiveHours(this.weeklyHours);
+        }
     }
 
     public int getWeeklyHours() {

@@ -3,7 +3,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserInput {
-    public static int scanIntFromRange(String requestMessage, int minValue, int maxValue){
+    public static int inputIntFromRange(String requestMessage, int minValue, int maxValue){
         Scanner scan = new Scanner(System.in);
 
         int number = minValue - 1;
@@ -24,7 +24,7 @@ public class UserInput {
         return number;
     }
 
-    public static String scanString(String requestMessage){
+    public static String inputString(String requestMessage){
         Scanner scan = new Scanner(System.in);
         // Pattern for at least 1 letter
         Pattern pattern = Pattern.compile(".*[a-zA-Z]+.*");
@@ -61,16 +61,34 @@ public class UserInput {
     }
 
     public static void showMainMenu(){
+        System.out.println("\n-----------------------------------------------------");
+        System.out.println("|                      MAIN MENU                    |");
+        System.out.println("|  1. Show all classes.                             |");
+        System.out.println("|  2. Show all teachers.                            |");
+        System.out.println("|  3. Show all students.                            |");
+        System.out.println("|  4. Show a class details.                         |");
+        System.out.println("|  5. Create a new student.                         |");
+        System.out.println("|  6. Add an existing student to an existing class. |");
+        System.out.println("|  7. Create a new class.                           |");
+        System.out.println("|  8. List all classes of a student.                |");
+        System.out.println("|  9. Exit.                                         |");
+        System.out.println("-----------------------------------------------------");
     }
 
     public static void showYesNoMenu(){
+        System.out.println("\n---------------");
+        System.out.println("|  1. Yes.    |");
+        System.out.println("|  2. No.     |");
+        System.out.println("---------------");
     }
 
     public static int optionMainMenu(){
-        return 0;
+        showMainMenu();
+        return inputIntFromRange("Type the number of an option from the menu: ", 1, 9);
     }
 
     public static int optionYesNoMenu(String requestMessage){
-        return 0;
+        showYesNoMenu();
+        return inputIntFromRange(requestMessage,1,2);
     }
 }
