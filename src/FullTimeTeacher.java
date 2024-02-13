@@ -2,7 +2,9 @@ public class FullTimeTeacher extends Teacher {
     private int experienceYears = 0;
 
     // Constructor
-    public FullTimeTeacher(int baseSalaryPerHour, int experienceYears) {
+    public FullTimeTeacher(String name, int id, int baseSalaryPerHour, int experienceYears) {
+        this.name = name;
+        this.id = id;
         this.baseSalaryPerHour = baseSalaryPerHour;
         this.experienceYears = experienceYears;
         calculateSalary();

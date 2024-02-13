@@ -2,7 +2,9 @@ public class PartTimeTeacher extends Teacher {
     private int activeHoursPerWeek = 0;
 
     // Constructor
-    public PartTimeTeacher(double baseSalaryPerHour, int activeHoursPerWeek) {
+    public PartTimeTeacher(String name, int id, double baseSalaryPerHour, int activeHoursPerWeek) {
+        this.name = name;
+        this.id = id;
         this.baseSalaryPerHour = baseSalaryPerHour;
         this.activeHoursPerWeek = activeHoursPerWeek;
         calculateSalary();
