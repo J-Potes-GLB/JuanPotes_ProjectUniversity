@@ -19,7 +19,7 @@ public class PartTimeTeacher extends Teacher {
     }
 
     public void calculateSalary(){
-
+        this.fullSalaryPerWeek = this.baseSalaryPerHour * this.activeHoursPerWeek;
     }
     public void showDetails(int index){
         if(index == 0){

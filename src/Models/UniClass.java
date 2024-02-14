@@ -96,6 +96,7 @@ public class UniClass implements Details {
 
         if(this.classTeacher instanceof PartTimeTeacher){
             ((PartTimeTeacher) this.classTeacher).increaseActiveHours(this.weeklyHours);
+            this.classTeacher.calculateSalary();
         }
     }
 
