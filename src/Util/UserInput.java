@@ -66,10 +66,6 @@ public class UserInput {
         return stringLine;
     }
 
-    public static Teacher inputTeacher(){
-        return null;
-    }
-
     // Method that returns the index of a teacher specified by id from a List of teachers
     public static int indexOfTeacher(List<Teacher> teachers, int id){
         int index = -1;
