@@ -94,18 +94,23 @@ public class University {
     public void selectAndShowClass(){
         showClasses();
         if(!this.classes.isEmpty()){
-            int index;
-
-            do{
-                int classId = UserInput.inputPositiveInt("Please type the ID of a class to see more details: ");
-                index = indexOfClass(classId);
-                if(index == -1){
-                    System.out.println("\nThe class of ID: " + classId + " does NOT exist. Try again.");
-                }
-            }while(index == -1);
-
+            int index = selectClass("Please type the ID of a class to see more details: ");
             this.classes.get(index).showExtraDetails();
         }
+    }
+
+    public int selectClass(String requestMessage){
+        int index;
+
+        do{
+            int classId = UserInput.inputPositiveInt(requestMessage);
+            index = indexOfClass(classId);
+            if(index == -1){
+                System.out.println("\nThe class of ID:" + classId + " does NOT exist. Try again.");
+            }
+        }while(index == -1);
+
+        return index;
     }
 
     public int indexOfClass(int id){
