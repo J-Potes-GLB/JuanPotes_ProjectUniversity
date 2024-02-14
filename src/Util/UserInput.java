@@ -77,6 +77,20 @@ public class UserInput {
         return index;
     }
 
+    public static int inputExistingTeacherId(List<Teacher> teachers, String requestMessage){
+        int indexTeacher = -1;
+        int idTeacher;
+        do{
+            idTeacher = UserInput.inputPositiveInt(requestMessage);
+            indexTeacher = UserInput.indexOfTeacher(teachers, idTeacher);
+
+            if(indexTeacher == -1){
+                System.out.println("Teacher not found!. Check the ID number and try again.");
+            }
+        }while(indexTeacher == -1);
+        return idTeacher;
+    }
+
     public static Student inputStudent(List<Student> students){
         int id;
         int index;
