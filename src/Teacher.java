@@ -1,6 +1,6 @@
 public class Teacher extends Person implements Details {
-    double baseSalaryPerHour = 0.0;
-    double fullSalaryPerWeek = 0.0;
+    protected double baseSalaryPerHour = 0.0;
+    protected double fullSalaryPerWeek = 0.0;
 
     // Methods
     public void calculateSalary(){

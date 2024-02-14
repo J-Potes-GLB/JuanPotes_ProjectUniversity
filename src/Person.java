@@ -1,6 +1,6 @@
 public abstract class Person {
-    String name;
-    int id;
+    protected String name;
+    protected int id;
 
     // Getters and Setters
     public String getName() {
