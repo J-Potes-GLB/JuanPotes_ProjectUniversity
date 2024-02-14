@@ -1,5 +1,6 @@
 public class FullTimeTeacher extends Teacher {
     private int experienceYears = 0;
+    private final String type = "Full time";
 
     // Constructor
     public FullTimeTeacher(String name, int id, double baseSalaryPerHour, int experienceYears) {
@@ -16,7 +17,7 @@ public class FullTimeTeacher extends Teacher {
     }
 
     public void showDetails(){
-
+        System.out.println(String.format("%-10s %-20s %-20s %-20s %-20s %-20s %-20s", this.id, this.name, this.type, this.experienceYears, this.baseSalaryPerHour, 40, this.fullSalaryPerWeek));
     }
 
     // Getters and Setters

@@ -61,7 +61,15 @@ public class University {
     }
 
     public void showTeachers(){
-
+        if(!this.teachers.isEmpty()){
+            System.out.println("\nTEACHERS\n");
+            for (int i = 0; i < this.teachers.size(); i++){
+                this.teachers.get(i).showDetails(i);
+            }
+        }
+        else{
+            System.out.println("\nCurrently there are no teachers in the list.");
+        }
     }
 
     public void showStudents(){
