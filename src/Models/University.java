@@ -218,7 +218,7 @@ public class University {
 
             // Fill studentClasses List with the classes where the student is found
             for(UniClass c : this.classes){
-                if(c.indexOfStudent(idStudent) != -1){
+                if(UserInput.indexOfStudent(c.getClassStudents(),idStudent) != -1){
                     studentClasses.add(c);
                 }
             }
