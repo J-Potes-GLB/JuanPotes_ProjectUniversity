@@ -1,3 +1,11 @@
+package Models;
+
+import Models.Persons.Teachers.FullTimeTeacher;
+import Models.Persons.Teachers.PartTimeTeacher;
+import Models.Persons.Student;
+import Models.Persons.Teachers.Teacher;
+import Util.*;
+
 import java.util.ArrayList;
 import java.util.List;
 

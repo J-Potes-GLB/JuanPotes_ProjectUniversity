@@ -1,3 +1,8 @@
+package Models.Persons.Teachers;
+
+import Models.Persons.Person;
+import Util.Details;
+
 public class Teacher extends Person implements Details {
     protected double baseSalaryPerHour = 0.0;
     protected double fullSalaryPerWeek = 0.0;

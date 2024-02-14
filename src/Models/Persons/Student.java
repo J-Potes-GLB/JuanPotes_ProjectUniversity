@@ -1,3 +1,7 @@
+package Models.Persons;
+
+import Util.Details;
+
 public class Student extends Person implements Details {
     private int age;
 

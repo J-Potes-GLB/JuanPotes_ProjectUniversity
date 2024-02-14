@@ -1,3 +1,9 @@
+package Util;
+
+import Models.Persons.Student;
+import Models.Persons.Teachers.Teacher;
+import Models.UniClass;
+
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

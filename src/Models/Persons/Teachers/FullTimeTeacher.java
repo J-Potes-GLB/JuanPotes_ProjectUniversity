@@ -1,3 +1,5 @@
+package Models.Persons.Teachers;
+
 public class FullTimeTeacher extends Teacher {
     private int experienceYears = 0;
     private final String type = "Full time";

@@ -1,3 +1,5 @@
+package Models.Persons.Teachers;
+
 public class PartTimeTeacher extends Teacher {
     private int activeHoursPerWeek = 0;
     private final String type = "Part time";
