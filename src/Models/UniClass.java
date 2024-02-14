@@ -46,7 +46,16 @@ public class UniClass implements Details {
     }
 
     public void showExtraDetails(){
+        System.out.println("\nDETAILS OF CLASS '" + this.id + "'");
+        showDetails(0);
 
+        System.out.println("\nTEACHER OF CLASS '" + this.id + "'");
+        this.classTeacher.showDetails(0);
+
+        System.out.println("\nSTUDENTS OF CLASS '" + this.id + "'");
+        for(int i = 0; i < this.classStudents.size(); i++){
+            this.classStudents.get(i).showDetails(i);
+        }
     }
 
     public boolean idEquals(int id){
