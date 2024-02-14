@@ -66,6 +66,17 @@ public class UserInput {
         return null;
     }
 
+    public static int indexOfTeacher(List<Teacher> teachers, int id){
+        int index = -1;
+        for(int i = 0; i < teachers.size(); i++){
+            if(teachers.get(i).idEquals(id)){
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
+
     public static Student inputStudent(List<Student> students){
         int id;
         int index;

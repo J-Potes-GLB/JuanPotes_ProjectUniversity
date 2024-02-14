@@ -176,7 +176,25 @@ public class University {
     }
 
     public void createClass(){
+        int indexTeacher = -1;
+        UniClass newClass = UserInput.inputUniClass();
 
+        showTeachers();
+        do{
+            int idTeacher = UserInput.inputPositiveInt("Please type the ID of the TEACHER for the class: ");
+                indexTeacher = UserInput.indexOfTeacher(this.teachers, idTeacher);
+
+            if(indexTeacher == -1){
+                System.out.println("Teacher not found!. Check the ID number and try again.");
+            }
+        }while(indexTeacher == -1);
+
+        newClass.setClassTeacher(this.teachers.get(indexTeacher));
+
+        // Crear UserInput inputExistingId to make it more readable
+        // Falta agregar estudiantes
+
+        this.classes.add(newClass);
     }
 
     public void showClassesOfStudent(){

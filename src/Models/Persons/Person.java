@@ -4,6 +4,10 @@ public abstract class Person {
     protected String name;
     protected int id;
 
+    public boolean idEquals(int id){
+        return id == this.id;
+    }
+
     // Getters and Setters
     public String getName() {
         return name;
