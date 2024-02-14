@@ -15,7 +15,7 @@ public class FullTimeTeacher extends Teacher {
 
     // Methods
     public void calculateSalary(){
-
+        this.fullSalaryPerWeek = (this.baseSalaryPerHour + (0.1 * this.baseSalaryPerHour * this.experienceYears)) * 40;
     }
 
     public void showDetails(int index){

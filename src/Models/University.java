@@ -92,11 +92,32 @@ public class University {
     }
 
     public void selectAndShowClass(){
+        showClasses();
+        if(!this.classes.isEmpty()){
+            int index;
 
+            do{
+                int classId = UserInput.inputPositiveInt("Please type the ID of a class to see more details: ");
+                index = indexOfClass(classId);
+                if(index == -1){
+                    System.out.println("\nThe class of ID: " + classId + " does NOT exist. Try again.");
+                }
+            }while(index == -1);
+
+            this.classes.get(index).showExtraDetails();
+        }
     }
 
-    public void selectClass(){
-        // Check if its necessary
+    public int indexOfClass(int id){
+        int index = -1;
+        for(int i = 0; i < this.classes.size(); i++)
+        {
+            if(this.classes.get(i).idEquals(id)){
+                index = i;
+                break;
+            }
+        }
+        return index;
     }
 
     public void createStudent(){

@@ -45,6 +45,23 @@ public class UniClass implements Details {
         System.out.println(String.format("%-10s %-20s %-20s %-20s", this.id, this.name, this.weeklyHours, this.classStudents.size()));
     }
 
+    public void showExtraDetails(){
+        System.out.println("\nDETAILS OF CLASS '" + this.id + "'");
+        showDetails(0);
+
+        System.out.println("\nTEACHER OF CLASS '" + this.id + "'");
+        this.classTeacher.showDetails(0);
+
+        System.out.println("\nSTUDENTS OF CLASS '" + this.id + "'");
+        for(int i = 0; i < this.classStudents.size(); i++){
+            this.classStudents.get(i).showDetails(i);
+        }
+    }
+
+    public boolean idEquals(int id){
+        return id == this.id;
+    }
+
     // Getters and Setters
     public int getId() {
         return id;
@@ -79,6 +96,7 @@ public class UniClass implements Details {
 
         if(this.classTeacher instanceof PartTimeTeacher){
             ((PartTimeTeacher) this.classTeacher).increaseActiveHours(this.weeklyHours);
+            this.classTeacher.calculateSalary();
         }
     }
 
@@ -90,7 +108,7 @@ public class UniClass implements Details {
         this.weeklyHours = weeklyHours;
     }
 
-    public int getFreeClassId(){
+    public static int getFreeClassId(){
         int taken = freeClassId;
         freeClassId++;
         return taken;

@@ -30,6 +30,10 @@ public class UserInput {
         return number;
     }
 
+    public static int inputPositiveInt(String requestMessage){
+        return inputIntFromRange(requestMessage,1, Integer.MAX_VALUE);
+    }
+
     public static String inputString(String requestMessage){
         Scanner scan = new Scanner(System.in);
         // Pattern for at least 1 letter
