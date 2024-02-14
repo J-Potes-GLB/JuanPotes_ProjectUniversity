@@ -1,3 +1,5 @@
+package Models.Persons;
+
 public abstract class Person {
     protected String name;
     protected int id;

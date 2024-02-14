@@ -1,3 +1,10 @@
+package Models;
+
+import Models.Persons.Teachers.PartTimeTeacher;
+import Models.Persons.Student;
+import Models.Persons.Teachers.Teacher;
+import Util.Details;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +31,7 @@ public class UniClass implements Details {
     public void addStudent(Student student){
         if (indexOfStudent(student.getId()) != -1){
             this.classStudents.add(student);
-            System.out.println("\nStudent '" + student.getName() + "' was added to the class '" + this.name + "'");
+            System.out.println("\nModels.Persons.Student '" + student.getName() + "' was added to the class '" + this.name + "'");
         }
         else{
             System.out.println("\nThe student it's already in the class");
