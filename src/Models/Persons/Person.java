@@ -4,6 +4,9 @@ public abstract class Person {
     protected String name;
     protected int id;
 
+    // Methods
+
+    // Method to check if an id sent as parameter is the same as the id of the person
     public boolean idEquals(int id){
         return id == this.id;
     }

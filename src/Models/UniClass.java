@@ -4,6 +4,7 @@ import Models.Persons.Teachers.PartTimeTeacher;
 import Models.Persons.Student;
 import Models.Persons.Teachers.Teacher;
 import Util.Details;
+import Util.UserInput;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,19 +25,10 @@ public class UniClass implements Details {
     }
 
     // Methods
-    public int indexOfStudent(int id){
-        int index = -1;
-        for(int i = 0; i < this.classStudents.size(); i++){
-            if(this.classStudents.get(i).idEquals(id)){
-                index = i;
-                break;
-            }
-        }
-        return index;
-    }
 
+    // Method to add a student to the class, only if the student is not already in the class
     public void addStudent(Student student){
-        if (indexOfStudent(student.getId()) == -1){
+        if (UserInput.indexOfStudent(this.classStudents, student.getId()) == -1){
             this.classStudents.add(student);
             System.out.println("\nThe student '" + student.getName() + "' was added to the class '" + this.name + "'");
         }
@@ -45,6 +37,8 @@ public class UniClass implements Details {
         }
     }
 
+    // Implementation of the Details interface method to show the general details of the class
+    // (The index is a parameter to only show the titles with the first element of a list and not with the rest)
     public void showDetails(int index){
         if(index == 0){
             System.out.println(String.format("%-10s %-20s %-20s %-20s", "ID", "NAME", "WEEKLY HOURS", "NUMBER OF STUDENTS"));
@@ -52,6 +46,7 @@ public class UniClass implements Details {
         System.out.println(String.format("%-10s %-20s %-20s %-20s", this.id, this.name, this.weeklyHours, this.classStudents.size()));
     }
 
+    // Method to show the specific extra details of the class (attributes, teacher and students)
     public void showExtraDetails(){
         System.out.println("\nDETAILS OF CLASS '" + this.id + "'");
         showDetails(0);
@@ -65,11 +60,30 @@ public class UniClass implements Details {
         }
     }
 
+    // Method to check if an id sent as parameter is the same as the id of the class
     public boolean idEquals(int id){
         return id == this.id;
     }
 
     // Getters and Setters
+
+    // Setter for the teacher of the class, in case of part-time teachers the active hours are updated and the salary is recalculated
+    public void setClassTeacher(Teacher classTeacher) {
+        this.classTeacher = classTeacher;
+
+        if(this.classTeacher instanceof PartTimeTeacher){
+            ((PartTimeTeacher) this.classTeacher).increaseActiveHours(this.weeklyHours);
+            this.classTeacher.calculateSalary();
+        }
+    }
+
+    // Getter for the static value freeClassId, the value is changed everytime so that all classes have different id numbers
+    public static int getFreeClassId(){
+        int taken = freeClassId;
+        freeClassId++;
+        return taken;
+    }
+
     public int getId() {
         return id;
     }
@@ -98,26 +112,11 @@ public class UniClass implements Details {
         return classTeacher;
     }
 
-    public void setClassTeacher(Teacher classTeacher) {
-        this.classTeacher = classTeacher;
-
-        if(this.classTeacher instanceof PartTimeTeacher){
-            ((PartTimeTeacher) this.classTeacher).increaseActiveHours(this.weeklyHours);
-            this.classTeacher.calculateSalary();
-        }
-    }
-
     public int getWeeklyHours() {
         return weeklyHours;
     }
 
     public void setWeeklyHours(int weeklyHours) {
         this.weeklyHours = weeklyHours;
-    }
-
-    public static int getFreeClassId(){
-        int taken = freeClassId;
-        freeClassId++;
-        return taken;
     }
 }

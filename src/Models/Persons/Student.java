@@ -13,10 +13,9 @@ public class Student extends Person implements Details {
     }
 
     // Methods
-//    public boolean idEquals(int id){
-//        return id == this.id;
-//    }
 
+    // Implementation of the Details interface method to show the details of the student
+    // (The index is a parameter to only show the titles with the first element of a list and not with the rest)
     public void showDetails(int index){
         if(index == 0){
             System.out.println(String.format("%-10s %-20s %-10s", "ID", "NAME", "AGE"));

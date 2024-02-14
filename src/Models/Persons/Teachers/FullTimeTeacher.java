@@ -14,10 +14,14 @@ public class FullTimeTeacher extends Teacher {
     }
 
     // Methods
+
+    // Method to calculate the salary of full time teachers, in this case, the base salary increments by 10% of the baseSalary for every year of experience.
+    // As full time teacher, the amount of hours worked in a week is 40.
     public void calculateSalary(){
         this.fullSalaryPerWeek = (this.baseSalaryPerHour + (0.1 * this.baseSalaryPerHour * this.experienceYears)) * 40;
     }
 
+    // Method to show the details of the teacher (The index is a parameter to only show the titles with the first element of a list and not with the rest)
     public void showDetails(int index){
         if(index == 0){
             System.out.println(String.format("%-10s %-20s %-20s %-20s %-20s %-20s %-20s", "ID", "NAME", "TYPE", "EXPERIENCE YEARS", "BASE SALARY/HOUR", "HOURS/WEEK", "SALARY/WEEK"));
