@@ -107,7 +107,7 @@ public class UniClass implements Details {
         this.weeklyHours = weeklyHours;
     }
 
-    public int getFreeClassId(){
+    public static int getFreeClassId(){
         int taken = freeClassId;
         freeClassId++;
         return taken;
