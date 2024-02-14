@@ -12,7 +12,7 @@ public class University {
 
     // Methods
     public void executeOptions(){
-        int option = 0;
+        int option;
         do{
             option = UserInput.optionMainMenu();
 
@@ -48,15 +48,39 @@ public class University {
     }
 
     public void showClasses(){
-
+        if(!this.classes.isEmpty()){
+            System.out.println("\nALL CLASSES");
+            for(int i = 0; i < this.classes.size(); i++){
+                this.classes.get(i).showDetails(i);
+            }
+        }
+        else{
+            System.out.println("\nCurrently there are no classes in the list.");
+        }
     }
 
     public void showTeachers(){
-
+        if(!this.teachers.isEmpty()){
+            System.out.println("\nALL TEACHERS");
+            for (int i = 0; i < this.teachers.size(); i++){
+                this.teachers.get(i).showDetails(i);
+            }
+        }
+        else{
+            System.out.println("\nCurrently there are no teachers in the list.");
+        }
     }
 
     public void showStudents(){
-
+        if(!this.students.isEmpty()){
+            System.out.println("\nALL STUDENTS");
+            for (int i = 0; i < this.students.size(); i++){
+                this.students.get(i).showDetails(i);
+            }
+        }
+        else{
+            System.out.println("\nCurrently there are no students in the list.");
+        }
     }
 
     public void selectAndShowClass(){
@@ -99,7 +123,7 @@ public class University {
         this.students.add(new Student("Santiago Ruiz", 2003, 19));
         this.students.add(new Student("Luis Gomez", 2004, 21));
         this.students.add(new Student("John Pardo", 2005, 18));
-        this.students.add(new Student("Carol Mora", 2001, 20));
+        this.students.add(new Student("Carol Mora", 2006, 20));
 
         this.classes.get(0).setClassTeacher(this.teachers.get(3));
         this.classes.get(0).addStudent(this.students.get(0));

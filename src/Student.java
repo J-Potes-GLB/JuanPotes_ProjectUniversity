@@ -9,8 +9,11 @@ public class Student extends Person implements Details {
     }
 
     // Methods
-    public void showDetails(){
-
+    public void showDetails(int index){
+        if(index == 0){
+            System.out.println(String.format("%-10s %-20s %-10s", "ID", "NAME", "AGE"));
+        }
+        System.out.println(String.format("%-10s %-20s %-10s", this.id, this.name, this.age));
     }
 
     // Getters and Setters
