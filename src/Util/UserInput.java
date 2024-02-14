@@ -4,6 +4,7 @@ import Models.Persons.Student;
 import Models.Persons.Teachers.Teacher;
 import Models.UniClass;
 
+import java.util.List;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,6 +20,9 @@ public class UserInput {
 
             if (scan.hasNextInt()){
                 number = scan.nextInt();
+            }
+            else{
+                scan.next();
             }
 
             if(number < minValue || number > maxValue){
@@ -51,7 +55,7 @@ public class UserInput {
             matches = matcher.matches();
 
             if(!matches){
-                System.out.println("\nINVALID VALUE. Try again (The input must contain at least one letter).");
+                System.out.println("INVALID VALUE. Try again (The input must contain at least one letter).");
             }
         }
 
@@ -62,12 +66,31 @@ public class UserInput {
         return null;
     }
 
-    public static Student inputStudent(){
-        int id = inputPositiveInt("Please type the ID number of the new student: ");
+    public static Student inputStudent(List<Student> students){
+        int id;
+        int index;
+        do{
+            id = inputPositiveInt("Please type the ID number of the new student: ");
+            index = indexOfStudent(students, id);
+            if(index != -1){
+                System.out.println("The student with the ID:" + id + " already exist. Try another one");
+            }
+        }while(index != -1);
         String name = inputString("Please type the first and last NAME of the new student: ");
         int age = inputIntFromRange("Please type the AGE of the new student: ", 10, 99);
 
         return new Student(name, id, age);
+    }
+
+    public static int indexOfStudent(List<Student> students, int id){
+        int index = -1;
+        for(int i = 0; i < students.size(); i++){
+            if(students.get(i).idEquals(id)){
+                index = i;
+                break;
+            }
+        }
+        return index;
     }
 
     public static UniClass inputUniClass(){

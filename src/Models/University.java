@@ -126,7 +126,7 @@ public class University {
     }
 
     public void createStudent(){
-        Student newStudent = UserInput.inputStudent();
+        Student newStudent = UserInput.inputStudent(this.students);
         this.students.add(newStudent);
         System.out.println("\nThe student '" + newStudent.getName() + "' created successfully!");
 
@@ -152,7 +152,7 @@ public class University {
     }
 
     public void addStudentToClass(){
-        
+
     }
 
     public void addStudentToClass(Student student, UniClass uniClass){

@@ -25,13 +25,20 @@ public class UniClass implements Details {
 
     // Methods
     public int indexOfStudent(int id){
-        return 0;
+        int index = -1;
+        for(int i = 0; i < this.classStudents.size(); i++){
+            if(this.classStudents.get(i).idEquals(id)){
+                index = i;
+                break;
+            }
+        }
+        return index;
     }
 
     public void addStudent(Student student){
-        if (indexOfStudent(student.getId()) != -1){
+        if (indexOfStudent(student.getId()) == -1){
             this.classStudents.add(student);
-            System.out.println("\nModels.Persons.Student '" + student.getName() + "' was added to the class '" + this.name + "'");
+            System.out.println("\nThe student '" + student.getName() + "' was added to the class '" + this.name + "'");
         }
         else{
             System.out.println("\nThe student it's already in the class");
