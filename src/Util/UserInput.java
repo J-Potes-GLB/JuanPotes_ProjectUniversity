@@ -92,15 +92,7 @@ public class UserInput {
     }
 
     public static Student inputStudent(List<Student> students){
-        int id;
-        int index;
-        do{
-            id = inputPositiveInt("Please type the ID number of the new student: ");
-            index = indexOfStudent(students, id);
-            if(index != -1){
-                System.out.println("The student with the ID:" + id + " already exist. Try another one");
-            }
-        }while(index != -1);
+        int id = inputNewStudentId(students , "Please type the ID number of the new student: ");
         String name = inputString("Please type the first and last NAME of the new student: ");
         int age = inputIntFromRange("Please type the AGE of the new student: ", 10, 99);
 
@@ -119,8 +111,8 @@ public class UserInput {
     }
 
     public static int inputExistingStudentId(List<Student> students, String requestMessage){
-        int indexStudent = -1;
         int idStudent;
+        int indexStudent;
         do{
             idStudent = UserInput.inputPositiveInt(requestMessage);
             indexStudent = UserInput.indexOfStudent(students, idStudent);
@@ -132,11 +124,49 @@ public class UserInput {
         return idStudent;
     }
 
+    public static int inputNewStudentId(List<Student> students, String requestMessage){
+        int id;
+        int index;
+        do{
+            id = inputPositiveInt(requestMessage);
+            index = indexOfStudent(students, id);
+            if(index != -1){
+                System.out.println("The student with the ID:" + id + " already exist. Try another one");
+            }
+        }while(index != -1);
+        return id;
+    }
+
     public static UniClass inputUniClass(){
 
         String name = inputString("Please type the name of the new class: ");
         int weeklyHours = inputIntFromRange("Please type the weekly hours of the class: ", 1, 6);
         return new UniClass(name, weeklyHours);
+    }
+
+    public static int indexOfUniClass(List<UniClass> classes, int id){
+        int index = -1;
+        for(int i = 0; i < classes.size(); i++){
+            if(classes.get(i).idEquals(id)){
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
+
+    public static int inputExistingClassId(List<UniClass> classes, String requestMessage){
+        int indexUniClass = -1;
+        int idUniClass;
+        do{
+            idUniClass = UserInput.inputPositiveInt(requestMessage);
+            indexUniClass = UserInput.indexOfUniClass(classes, idUniClass);
+
+            if(indexUniClass == -1){
+                System.out.println("Class not found!. Check the ID number and try again.");
+            }
+        }while(indexUniClass == -1);
+        return idUniClass;
     }
 
     public static void showMainMenu(){
