@@ -48,10 +48,15 @@ public class University {
     }
 
     public void showClasses(){
-        System.out.println("\nALL CLASSES\n");
-        System.out.println(String.format("%-10s %-20s %-20s %-20s %-20s", "ID", "NAME", "TEACHER", "WEEKLY HOURS", "NUMBER OF STUDENTS"));
-        for (UniClass c : this.classes){
-            System.out.println(String.format("%-10s %-20s %-20s %-20s %-20s", c.getId(), c.getName(), c.getClassTeacher().getName(), c.getWeeklyHours(), c.getClassStudents().size()));
+        if(!this.classes.isEmpty()){
+            System.out.println("\nALL CLASSES\n");
+            System.out.println(String.format("%-10s %-20s %-20s %-20s %-20s", "ID", "NAME", "TEACHER", "WEEKLY HOURS", "NUMBER OF STUDENTS"));
+            for (UniClass c : this.classes){
+                System.out.println(String.format("%-10s %-20s %-20s %-20s %-20s", c.getId(), c.getName(), c.getClassTeacher().getName(), c.getWeeklyHours(), c.getClassStudents().size()));
+            }
+        }
+        else{
+            System.out.println("\nCurrently there are no classes.");
         }
     }
 
