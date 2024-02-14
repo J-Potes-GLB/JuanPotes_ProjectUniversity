@@ -130,7 +130,6 @@ public class University {
         this.students.add(newStudent);
         System.out.println("\nThe student '" + newStudent.getName() + "' created successfully!");
 
-        UserInput.showYesNoMenu();
         int optionYN = UserInput.optionYesNoMenu("Do you wanna add the new student to an existing class? (Type the number of your choice): ");
 
         switch (optionYN){
@@ -153,7 +152,7 @@ public class University {
     }
 
     public void addStudentToClass(){
-
+        
     }
 
     public void addStudentToClass(Student student, UniClass uniClass){
