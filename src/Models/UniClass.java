@@ -45,6 +45,10 @@ public class UniClass implements Details {
         System.out.println(String.format("%-10s %-20s %-20s %-20s", this.id, this.name, this.weeklyHours, this.classStudents.size()));
     }
 
+    public void showExtraDetails(){
+
+    }
+
     // Getters and Setters
     public int getId() {
         return id;
