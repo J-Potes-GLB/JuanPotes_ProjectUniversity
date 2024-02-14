@@ -157,7 +157,7 @@ public class University {
     }
 
     public void addStudentToClass(Student student, UniClass uniClass){
-
+        uniClass.addStudent(student);
     }
 
     public void createClass(){
