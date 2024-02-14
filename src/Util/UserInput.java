@@ -10,11 +10,12 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserInput {
+    // Method to validate an integer input and only accept values that are integers and between a specific range
     public static int inputIntFromRange(String requestMessage, int minValue, int maxValue){
         Scanner scan = new Scanner(System.in);
-
         int number = minValue - 1;
 
+        // Repeats the cycle until the value typed by the user is valid
         do{
             System.out.print("\n" + requestMessage);
 
@@ -34,10 +35,12 @@ public class UserInput {
         return number;
     }
 
+    // Method to validate an integer input as greater than 0
     public static int inputPositiveInt(String requestMessage){
         return inputIntFromRange(requestMessage,1, Integer.MAX_VALUE);
     }
 
+    // Method to validate a String input and only accepted if it has at least one letter
     public static String inputString(String requestMessage){
         Scanner scan = new Scanner(System.in);
         // Pattern for at least 1 letter
@@ -46,6 +49,7 @@ public class UserInput {
         Matcher matcher;
         boolean matches = false;
 
+        // Repeats the cycle until the value typed by the user is valid
         while(!matches){
             System.out.print("\n" + requestMessage);
             stringLine = scan.nextLine();
@@ -66,6 +70,7 @@ public class UserInput {
         return null;
     }
 
+    // Method that returns the index of a teacher specified by id from a List of teachers
     public static int indexOfTeacher(List<Teacher> teachers, int id){
         int index = -1;
         for(int i = 0; i < teachers.size(); i++){
@@ -77,6 +82,7 @@ public class UserInput {
         return index;
     }
 
+    // Method that validates and returns a teacher's id typed by the user. Only allows it if the id exist on the List of teachers
     public static int inputExistingTeacherId(List<Teacher> teachers, String requestMessage){
         int indexTeacher = -1;
         int idTeacher;
@@ -91,6 +97,7 @@ public class UserInput {
         return idTeacher;
     }
 
+    // Method that returns a new Student object validating all the data typed by the user
     public static Student inputStudent(List<Student> students){
         int id = inputNewStudentId(students , "Please type the ID number of the new student: ");
         String name = inputString("Please type the first and last NAME of the new student: ");
@@ -99,6 +106,7 @@ public class UserInput {
         return new Student(name, id, age);
     }
 
+    // Method that returns the index of a student specified by id from a List of students
     public static int indexOfStudent(List<Student> students, int id){
         int index = -1;
         for(int i = 0; i < students.size(); i++){
@@ -110,6 +118,7 @@ public class UserInput {
         return index;
     }
 
+    // Method that validates and returns a student's id typed by the user. Only allows it if the id exist on the List of students
     public static int inputExistingStudentId(List<Student> students, String requestMessage){
         int idStudent;
         int indexStudent;
@@ -124,6 +133,7 @@ public class UserInput {
         return idStudent;
     }
 
+    // Method that validates and returns a student's id typed by the user. Only allows it if the id DOES NOT exist on the List of students (Can't have the same student id twice)
     public static int inputNewStudentId(List<Student> students, String requestMessage){
         int id;
         int index;
@@ -137,6 +147,7 @@ public class UserInput {
         return id;
     }
 
+    // Method that returns a new UniClass object validating all the data typed by the user
     public static UniClass inputUniClass(){
 
         String name = inputString("Please type the name of the new class: ");
@@ -144,6 +155,7 @@ public class UserInput {
         return new UniClass(name, weeklyHours);
     }
 
+    // Method that returns the index of a class specified by id from a List of classes
     public static int indexOfUniClass(List<UniClass> classes, int id){
         int index = -1;
         for(int i = 0; i < classes.size(); i++){
@@ -155,6 +167,7 @@ public class UserInput {
         return index;
     }
 
+    // Method that validates and returns a class id typed by the user. Only allows it if the id exist on the List of classes
     public static int inputExistingClassId(List<UniClass> classes, String requestMessage){
         int indexUniClass = -1;
         int idUniClass;
@@ -169,6 +182,7 @@ public class UserInput {
         return idUniClass;
     }
 
+    // Method to show the main menu options on the console
     public static void showMainMenu(){
         System.out.println("\n-----------------------------------------------------");
         System.out.println("|                      MAIN MENU                    |");
@@ -184,6 +198,7 @@ public class UserInput {
         System.out.println("-----------------------------------------------------");
     }
 
+    // Method to show the YES/NO menu options on the console
     public static void showYesNoMenu(){
         System.out.println("\n---------------");
         System.out.println("|  1. Yes.    |");
@@ -191,11 +206,13 @@ public class UserInput {
         System.out.println("---------------");
     }
 
+    // Method that validates and returns a valid option of the main menu
     public static int optionMainMenu(){
         showMainMenu();
         return inputIntFromRange("Type the number of an option from the menu: ", 1, 9);
     }
 
+    // Method that validates and returns a valid option of the YES/NO menu
     public static int optionYesNoMenu(String requestMessage){
         showYesNoMenu();
         return inputIntFromRange(requestMessage,1,2);
