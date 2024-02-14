@@ -13,9 +13,9 @@ public class Student extends Person implements Details {
     }
 
     // Methods
-    public boolean idEquals(int id){
-        return id == this.id;
-    }
+//    public boolean idEquals(int id){
+//        return id == this.id;
+//    }
 
     public void showDetails(int index){
         if(index == 0){

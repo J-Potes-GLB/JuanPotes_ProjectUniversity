@@ -66,6 +66,31 @@ public class UserInput {
         return null;
     }
 
+    public static int indexOfTeacher(List<Teacher> teachers, int id){
+        int index = -1;
+        for(int i = 0; i < teachers.size(); i++){
+            if(teachers.get(i).idEquals(id)){
+                index = i;
+                break;
+            }
+        }
+        return index;
+    }
+
+    public static int inputExistingTeacherId(List<Teacher> teachers, String requestMessage){
+        int indexTeacher = -1;
+        int idTeacher;
+        do{
+            idTeacher = UserInput.inputPositiveInt(requestMessage);
+            indexTeacher = UserInput.indexOfTeacher(teachers, idTeacher);
+
+            if(indexTeacher == -1){
+                System.out.println("Teacher not found!. Check the ID number and try again.");
+            }
+        }while(indexTeacher == -1);
+        return idTeacher;
+    }
+
     public static Student inputStudent(List<Student> students){
         int id;
         int index;
@@ -93,8 +118,25 @@ public class UserInput {
         return index;
     }
 
+    public static int inputExistingStudentId(List<Student> students, String requestMessage){
+        int indexStudent = -1;
+        int idStudent;
+        do{
+            idStudent = UserInput.inputPositiveInt(requestMessage);
+            indexStudent = UserInput.indexOfStudent(students, idStudent);
+
+            if(indexStudent == -1){
+                System.out.println("Student not found!. Check the ID number and try again.");
+            }
+        }while(indexStudent == -1);
+        return idStudent;
+    }
+
     public static UniClass inputUniClass(){
-        return null;
+
+        String name = inputString("Please type the name of the new class: ");
+        int weeklyHours = inputIntFromRange("Please type the weekly hours of the class: ", 1, 6);
+        return new UniClass(name, weeklyHours);
     }
 
     public static void showMainMenu(){
