@@ -94,18 +94,23 @@ public class University {
     public void selectAndShowClass(){
         showClasses();
         if(!this.classes.isEmpty()){
-            int index;
-
-            do{
-                int classId = UserInput.inputPositiveInt("Please type the ID of a class to see more details: ");
-                index = indexOfClass(classId);
-                if(index == -1){
-                    System.out.println("\nThe class of ID: " + classId + " does NOT exist. Try again.");
-                }
-            }while(index == -1);
-
+            int index = selectClass("Please type the ID of a class to see more details: ");
             this.classes.get(index).showExtraDetails();
         }
+    }
+
+    public int selectClass(String requestMessage){
+        int index;
+
+        do{
+            int classId = UserInput.inputPositiveInt(requestMessage);
+            index = indexOfClass(classId);
+            if(index == -1){
+                System.out.println("\nThe class of ID:" + classId + " does NOT exist. Try again.");
+            }
+        }while(index == -1);
+
+        return index;
     }
 
     public int indexOfClass(int id){
@@ -121,11 +126,37 @@ public class University {
     }
 
     public void createStudent(){
+        Student newStudent = UserInput.inputStudent(this.students);
+        this.students.add(newStudent);
+        System.out.println("\nThe student '" + newStudent.getName() + "' created successfully!");
 
+        int optionYN = UserInput.optionYesNoMenu("Do you wanna add the new student to an existing class? (Type the number of your choice): ");
+
+        switch (optionYN){
+            case 1:
+                showClasses();
+                if(!this.classes.isEmpty()){
+                    int index = selectClass("Please type the ID of the class to add the Student: ");
+                    addStudentToClass(newStudent, this.classes.get(index));
+                }
+                else{
+                    System.out.println("\nThe student '" + newStudent.getName() + "' was NOT added to any classes.");
+                }
+                break;
+            case 2:
+                System.out.println("\nThe student '" + newStudent.getName() + "' was NOT added to any classes.");
+                break;
+            default:
+                break;
+        }
     }
 
     public void addStudentToClass(){
 
+    }
+
+    public void addStudentToClass(Student student, UniClass uniClass){
+        uniClass.addStudent(student);
     }
 
     public void createClass(){
