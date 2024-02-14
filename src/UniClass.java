@@ -31,8 +31,11 @@ public class UniClass implements Details {
         }
     }
 
-    public void showDetails(){
-
+    public void showDetails(int index){
+        if(index == 0){
+            System.out.println(String.format("%-10s %-20s %-20s %-20s", "ID", "NAME", "WEEKLY HOURS", "NUMBER OF STUDENTS"));
+        }
+        System.out.println(String.format("%-10s %-20s %-20s %-20s", this.id, this.name, this.weeklyHours, this.classStudents.size()));
     }
 
     // Getters and Setters

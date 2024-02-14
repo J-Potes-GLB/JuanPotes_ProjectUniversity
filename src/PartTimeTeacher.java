@@ -19,7 +19,10 @@ public class PartTimeTeacher extends Teacher {
     public void calculateSalary(){
 
     }
-    public void showDetails(){
+    public void showDetails(int index){
+        if(index == 0){
+            System.out.println(String.format("%-10s %-20s %-20s %-20s %-20s %-20s %-20s", "ID", "NAME", "TYPE", "EXPERIENCE YEARS", "BASE SALARY/HOUR", "HOURS/WEEK", "SALARY/WEEK"));
+        }
         System.out.println(String.format("%-10s %-20s %-20s %-20s %-20s %-20s %-20s", this.id, this.name, this.type, "Irrelevant", this.baseSalaryPerHour, this.activeHoursPerWeek, this.fullSalaryPerWeek));
     }
 

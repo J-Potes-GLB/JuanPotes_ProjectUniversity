@@ -6,16 +6,8 @@ public class Teacher extends Person implements Details {
     public void calculateSalary(){
 
     }
-    public void showDetails(){
 
-    }
-
-    public void showDetails(int index){
-        if(index == 0){
-            System.out.println(String.format("%-10s %-20s %-20s %-20s %-20s %-20s %-20s", "ID", "NAME", "TYPE", "EXPERIENCE YEARS", "BASE SALARY/HOUR", "HOURS/WEEK", "SALARY/WEEK"));
-        }
-        showDetails();
-    }
+    public void showDetails(int index){}
 
     // Getters and Setters
     public double getBaseSalaryPerHour() {

@@ -13,6 +13,8 @@ public class Student extends Person implements Details {
 
     }
 
+    public void showDetails(int index){}
+
     // Getters and Setters
     public int getAge() {
         return age;
