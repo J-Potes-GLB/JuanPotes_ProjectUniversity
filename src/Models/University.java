@@ -126,10 +126,37 @@ public class University {
     }
 
     public void createStudent(){
+        Student newStudent = UserInput.inputStudent();
+        this.students.add(newStudent);
+        System.out.println("\nThe student '" + newStudent.getName() + "' created successfully!");
 
+        UserInput.showYesNoMenu();
+        int optionYN = UserInput.optionYesNoMenu("Do you wanna add the new student to an existing class? (Type the number of your choice): ");
+
+        switch (optionYN){
+            case 1:
+                showClasses();
+                if(!this.classes.isEmpty()){
+                    int index = selectClass("Please type the ID of the class to add the Student: ");
+                    addStudentToClass(newStudent, this.classes.get(index));
+                }
+                else{
+                    System.out.println("\nThe student '" + newStudent.getName() + "' was NOT added to any classes.");
+                }
+                break;
+            case 2:
+                System.out.println("\nThe student '" + newStudent.getName() + "' was NOT added to any classes.");
+                break;
+            default:
+                break;
+        }
     }
 
     public void addStudentToClass(){
+
+    }
+
+    public void addStudentToClass(Student student, UniClass uniClass){
 
     }
 
