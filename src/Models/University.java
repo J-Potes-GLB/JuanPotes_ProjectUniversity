@@ -109,7 +109,15 @@ public class University {
     }
 
     public int indexOfClass(int id){
-        return -1;
+        int index = -1;
+        for(int i = 0; i < this.classes.size(); i++)
+        {
+            if(this.classes.get(i).idEquals(id)){
+                index = i;
+                break;
+            }
+        }
+        return index;
     }
 
     public void createStudent(){

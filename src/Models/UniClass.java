@@ -49,6 +49,10 @@ public class UniClass implements Details {
 
     }
 
+    public boolean idEquals(int id){
+        return id == this.id;
+    }
+
     // Getters and Setters
     public int getId() {
         return id;
