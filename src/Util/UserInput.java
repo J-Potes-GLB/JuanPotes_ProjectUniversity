@@ -119,7 +119,10 @@ public class UserInput {
     }
 
     public static UniClass inputUniClass(){
-        return null;
+
+        String name = inputString("Please type the name of the new class: ");
+        int weeklyHours = inputIntFromRange("Please type the weekly hours of the class: ", 1, 6);
+        return new UniClass(name, weeklyHours);
     }
 
     public static void showMainMenu(){
