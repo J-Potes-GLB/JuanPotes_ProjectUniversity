@@ -99,30 +99,9 @@ public class University {
         }
     }
 
-    public int selectClass(String requestMessage){
-        int index;
-
-        do{
-            int classId = UserInput.inputPositiveInt(requestMessage);
-            index = indexOfClass(classId);
-            if(index == -1){
-                System.out.println("\nThe class of ID:" + classId + " does NOT exist. Try again.");
-            }
-        }while(index == -1);
-
-        return index;
-    }
-
-    public int indexOfClass(int id){
-        int index = -1;
-        for(int i = 0; i < this.classes.size(); i++)
-        {
-            if(this.classes.get(i).idEquals(id)){
-                index = i;
-                break;
-            }
-        }
-        return index;
+    private int selectClass(String requestMessage){
+        int id = UserInput.inputExistingClassId(this.classes, requestMessage);
+        return UserInput.indexOfUniClass(this.classes, id);
     }
 
     public void createStudent(){
@@ -152,18 +131,8 @@ public class University {
     }
 
     public void addStudentToClass(){
-        int indexStudent;
-
         showStudents();
-        do{
-            int idStudent = UserInput.inputPositiveInt("Please type the ID of the STUDENT add to a class: ");
-            indexStudent = UserInput.indexOfStudent(this.students, idStudent);
-
-            if(indexStudent == -1){
-                System.out.println("Student not found!. Check the ID number and try again.");
-            }
-
-        }while(indexStudent == -1);
+        int indexStudent = selectStudent("Please type the ID of the STUDENT add to a class: ");
 
         showClasses();
         int indexClass = selectClass("Please type the ID of the CLASS where the student will be added: ");
@@ -175,12 +144,21 @@ public class University {
         uniClass.addStudent(student);
     }
 
+    private int selectStudent(String requestMessage){
+        int idStudent = UserInput.inputExistingStudentId(this.students, requestMessage);
+        return UserInput.indexOfStudent(this.students, idStudent);
+    }
+
+    private int selectTeacher(String requestMessage){
+        int idTeacher = UserInput.inputExistingTeacherId(this.teachers, requestMessage);
+        return UserInput.indexOfTeacher(this.teachers, idTeacher);
+    }
+
     public void createClass(){
         UniClass newClass = UserInput.inputUniClass();
 
         showTeachers();
-        int idTeacher = UserInput.inputExistingTeacherId(this.teachers, "Please type the ID of the TEACHER for the class: ");
-        int indexTeacher = UserInput.indexOfTeacher(this.teachers, idTeacher);
+        int indexTeacher = selectTeacher("Please type the ID of the TEACHER for the class: ");
 
         newClass.setClassTeacher(this.teachers.get(indexTeacher));
 
