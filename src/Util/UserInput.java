@@ -118,6 +118,20 @@ public class UserInput {
         return index;
     }
 
+    public static int inputExistingStudentId(List<Student> students, String requestMessage){
+        int indexStudent = -1;
+        int idStudent;
+        do{
+            idStudent = UserInput.inputPositiveInt(requestMessage);
+            indexStudent = UserInput.indexOfStudent(students, idStudent);
+
+            if(indexStudent == -1){
+                System.out.println("Student not found!. Check the ID number and try again.");
+            }
+        }while(indexStudent == -1);
+        return idStudent;
+    }
+
     public static UniClass inputUniClass(){
 
         String name = inputString("Please type the name of the new class: ");

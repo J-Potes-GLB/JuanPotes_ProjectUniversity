@@ -183,9 +183,24 @@ public class University {
         int indexTeacher = UserInput.indexOfTeacher(this.teachers, idTeacher);
 
         newClass.setClassTeacher(this.teachers.get(indexTeacher));
-        // Falta agregar estudiantes
+
+        // Add multiple students
+        addMultipleStudentsToClass(newClass);
 
         this.classes.add(newClass);
+    }
+
+    public void addMultipleStudentsToClass(UniClass uniClass){
+        int optionYN;
+        do {
+            showStudents();
+            int idStudent = UserInput.inputExistingStudentId(this.students, "Please type the ID of the STUDENT to add to the class "+ uniClass.getName() + ": ");
+            int indexStudent = UserInput.indexOfStudent(this.students, idStudent);
+
+            uniClass.addStudent(this.students.get(indexStudent));
+
+            optionYN = UserInput.optionYesNoMenu("Would you like to add another student to the class " + uniClass.getName() + "? (Type the number of your choice): ");
+        }while(optionYN != 2);
     }
 
     public void showClassesOfStudent(){
