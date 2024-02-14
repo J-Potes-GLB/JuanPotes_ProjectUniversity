@@ -204,7 +204,26 @@ public class University {
     }
 
     public void showClassesOfStudent(){
+        List<UniClass> studentClasses = new ArrayList<>();
+        if(!this.classes.isEmpty()){
+            showStudents();
+            int idStudent = UserInput.inputExistingStudentId(this.students,"Please type the name of the STUDENT to show their classes: ");
+            int indexStudent = UserInput.indexOfStudent(this.students, idStudent);
 
+            // Fill studentClasses List with the classes where the student is found
+            for(UniClass c : this.classes){
+                if(c.indexOfStudent(idStudent) != -1){
+                    studentClasses.add(c);
+                }
+            }
+
+            if(!studentClasses.isEmpty()){
+                System.out.println("\nCLASSES OF STUDENT '" + this.students.get(indexStudent).getName() + "'");
+                for(int i = 0; i < studentClasses.size(); i++){
+                    studentClasses.get(i).showDetails(i);
+                }
+            }
+        }
     }
 
     public void initializeValues(){
