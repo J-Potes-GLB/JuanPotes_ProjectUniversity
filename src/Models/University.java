@@ -152,7 +152,23 @@ public class University {
     }
 
     public void addStudentToClass(){
+        int indexStudent;
 
+        showStudents();
+        do{
+            int idStudent = UserInput.inputPositiveInt("Please type the ID of the STUDENT add to a class: ");
+            indexStudent = UserInput.indexOfStudent(this.students, idStudent);
+
+            if(indexStudent == -1){
+                System.out.println("Student not found!. Check the ID number and try again.");
+            }
+
+        }while(indexStudent == -1);
+
+        showClasses();
+        int indexClass = selectClass("Please type the ID of the CLASS where the student will be added: ");
+
+        addStudentToClass(this.students.get(indexStudent), this.classes.get(indexClass));
     }
 
     public void addStudentToClass(Student student, UniClass uniClass){
