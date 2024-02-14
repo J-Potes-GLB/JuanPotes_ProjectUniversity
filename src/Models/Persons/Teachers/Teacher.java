@@ -8,10 +8,11 @@ public class Teacher extends Person implements Details {
     protected double fullSalaryPerWeek = 0.0;
 
     // Methods
-    public void calculateSalary(){
 
-    }
+    // Method to calculate the salary of the teacher (Override in the subclasses)
+    public void calculateSalary(){}
 
+    // Implementation of the Details interface method (Override in the subclasses)
     public void showDetails(int index){}
 
     // Getters and Setters
