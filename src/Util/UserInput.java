@@ -63,7 +63,11 @@ public class UserInput {
     }
 
     public static Student inputStudent(){
-        return null;
+        int id = inputPositiveInt("Please type the ID number of the new student: ");
+        String name = inputString("Please type the first and last NAME of the new student: ");
+        int age = inputIntFromRange("Please type the AGE of the new student: ", 10, 99);
+
+        return new Student(name, id, age);
     }
 
     public static UniClass inputUniClass(){
