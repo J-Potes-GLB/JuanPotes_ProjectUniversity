@@ -19,6 +19,8 @@ public class University {
     }
 
     // Methods
+
+    // Method to execute the main menu options
     public void executeOptions(){
         int option;
         do{
@@ -55,6 +57,7 @@ public class University {
         }while(option != 9);
     }
 
+    // Method to show all the classes
     public void showClasses(){
         if(!this.classes.isEmpty()){
             System.out.println("\nALL CLASSES");
@@ -67,6 +70,7 @@ public class University {
         }
     }
 
+    // Method to show all the teachers
     public void showTeachers(){
         if(!this.teachers.isEmpty()){
             System.out.println("\nALL TEACHERS");
@@ -79,6 +83,7 @@ public class University {
         }
     }
 
+    // Method to show all the students
     public void showStudents(){
         if(!this.students.isEmpty()){
             System.out.println("\nALL STUDENTS");
@@ -91,6 +96,7 @@ public class University {
         }
     }
 
+    // Method to execute the functionality of select a class and show all the details (with teacher and students)
     public void selectAndShowClass(){
         showClasses();
         if(!this.classes.isEmpty()){
@@ -99,22 +105,27 @@ public class University {
         }
     }
 
+    // Method that returns a valid index based on the id of one the classes typed by the user
     private int selectClass(String requestMessage){
         int id = UserInput.inputExistingClassId(this.classes, requestMessage);
         return UserInput.indexOfUniClass(this.classes, id);
     }
 
+    // Method that executes the functionality of creating a new student and adding it to an existing class
     public void createStudent(){
+        // Creates the new student object with valid inputs from the user
         Student newStudent = UserInput.inputStudent(this.students);
         this.students.add(newStudent);
         System.out.println("\nThe student '" + newStudent.getName() + "' created successfully!");
 
+        // Ask the user if they want to add the new student to a class
         int optionYN = UserInput.optionYesNoMenu("Do you wanna add the new student to an existing class? (Type the number of your choice): ");
-
         switch (optionYN){
             case 1:
+                // Answer YES
                 showClasses();
                 if(!this.classes.isEmpty()){
+                    // The user inputs the id of an existing class and the new student is added
                     int index = selectClass("Please type the ID of the class to add the Student: ");
                     addStudentToClass(newStudent, this.classes.get(index));
                 }
@@ -123,6 +134,7 @@ public class University {
                 }
                 break;
             case 2:
+                // Answer NO
                 System.out.println("\nThe student '" + newStudent.getName() + "' was NOT added to any classes.");
                 break;
             default:
@@ -130,57 +142,73 @@ public class University {
         }
     }
 
+    // Method that execute the functionality of adding an existing student to an existing class
     public void addStudentToClass(){
+        // The user inputs a valid student id, and the list index of that student is saved
         showStudents();
         int indexStudent = selectStudent("Please type the ID of the STUDENT add to a class: ");
 
+        // The user inputs a valid class id, and list index of that class is saved
         showClasses();
         int indexClass = selectClass("Please type the ID of the CLASS where the student will be added: ");
 
+        // Add the selected student to the selected class
         addStudentToClass(this.students.get(indexStudent), this.classes.get(indexClass));
     }
 
+    // Method to directly add a student to a class sending the objects as parameters (useful for quick initialization)
     public void addStudentToClass(Student student, UniClass uniClass){
         uniClass.addStudent(student);
     }
 
+    // Method that will ask the user for a valid student id and returns the index of that student in the list
     private int selectStudent(String requestMessage){
         int idStudent = UserInput.inputExistingStudentId(this.students, requestMessage);
         return UserInput.indexOfStudent(this.students, idStudent);
     }
 
+    // Method that will ask the user for a valid teacher id and returns the index of that teacher in the list
     private int selectTeacher(String requestMessage){
         int idTeacher = UserInput.inputExistingTeacherId(this.teachers, requestMessage);
         return UserInput.indexOfTeacher(this.teachers, idTeacher);
     }
 
+    // Method that execute the functionality of creating a new class, adding the teacher and several students
     public void createClass(){
+        // Creates the new class object
         UniClass newClass = UserInput.inputUniClass();
 
+        // The user inputs a valid teacher id, and list index of that teacher is saved
         showTeachers();
         int indexTeacher = selectTeacher("Please type the ID of the TEACHER for the class: ");
 
+        // The teacher is added to the new class
         newClass.setClassTeacher(this.teachers.get(indexTeacher));
 
         // Add multiple students
         addMultipleStudentsToClass(newClass);
 
+        // The new class is added to the list
         this.classes.add(newClass);
     }
 
+    // Method to keep adding students to a class until the user wants to stop
     public void addMultipleStudentsToClass(UniClass uniClass){
         int optionYN;
         do {
+            // The user inputs a valid student id, and the list index of that student is saved
             showStudents();
-            int idStudent = UserInput.inputExistingStudentId(this.students, "Please type the ID of the STUDENT to add to the class "+ uniClass.getName() + ": ");
-            int indexStudent = UserInput.indexOfStudent(this.students, idStudent);
+            int indexStudent = selectStudent("Please type the ID of the STUDENT to add to the class ");
 
+            // The student selected is added to the class
             uniClass.addStudent(this.students.get(indexStudent));
 
+            // The user decides if they want to add another student (Answer YES), or stop there (Anwer NO)
             optionYN = UserInput.optionYesNoMenu("Would you like to add another student to the class " + uniClass.getName() + "? (Type the number of your choice): ");
         }while(optionYN != 2);
     }
 
+    // Method that execute the functionality of showing all the classes of a specific student
     public void showClassesOfStudent(){
         List<UniClass> studentClasses = new ArrayList<>();
         if(!this.classes.isEmpty()){
@@ -195,15 +223,20 @@ public class University {
                 }
             }
 
+            // Show all the classes of the student
             if(!studentClasses.isEmpty()){
                 System.out.println("\nCLASSES OF STUDENT '" + this.students.get(indexStudent).getName() + "'");
                 for(int i = 0; i < studentClasses.size(); i++){
                     studentClasses.get(i).showDetails(i);
                 }
             }
+            else{
+                System.out.println("\nThe student '" + this.students.get(indexStudent).getName() + "' is NOT ASSIGNED to any classes");
+            }
         }
     }
 
+    // Method that initialize values for testing
     public void initializeValues(){
         this.teachers.add(new FullTimeTeacher("Alberto Perez", 1001, 5000, 5));
         this.teachers.add(new FullTimeTeacher("Sara Garcia", 1002, 6000, 10));
